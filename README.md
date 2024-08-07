@@ -12,6 +12,7 @@ You can use the images with the following command:
 
 ```bash
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh user@server
+```
 
 ## Available Images
 Every branch in this repo is for a different distribution. The images are named `garo/openssh-client:branchname` and are available for amd64 and arm64
