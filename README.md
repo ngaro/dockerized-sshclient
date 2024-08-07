@@ -19,6 +19,7 @@ Every branch in this repo is for a different distribution. The images are named 
 
 Available distro's:
 - Alpine (3.20.2) as `garo/openssh-client:alpine` _(also available as `garo/openssh-client` without tag or with `latest`)_
+- Kali (2024.2) as `garo/openssh-client:kali`
 - Ubuntu (24.04) as `garo/openssh-client:ubuntu`
 
 ## Contributing
