@@ -15,7 +15,7 @@ RUN make
 RUN make install
 WORKDIR /root
 RUN rm -rf /root/openssh-${OPENSSH_VERSION}
-#COPY ssh.c /root
+#COPY empty/ssh.c /root
 ##RUN gcc -static -o ssh ssh.c
 #RUN gcc -o ssh ssh.c
 
