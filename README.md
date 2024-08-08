@@ -22,6 +22,14 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | Alpine       |  3.20.2 | `alpine`, `latest` |
 | Kali         |  2024.2 | `kali`         |
 | Ubuntu       |  24.04  | `ubuntu`       |
+| OpenSSH-only |     9.8 | `empty`, `dev` |
 
 Extra info:
+- The `empty` image will become a extremely minimal image with a empty `/root/.ssh` directory and the OpenSSH client at `/ssh`. __No__ other files or directories will be present.<br>
+_Note that this image is still in __heavy__ development and will certainly __not__ work yet._
 - The Alpine also has the tag `latest`. This means that if you use `garo/openssh-client` without tag you'll get Alpine
+
+## Contributing
+- Bugfixes and Dockerfile's for new distributions are always welcome. Submit all pull requests to the `dev` branch.
+- If you create a Dockerfile ensure that the file name is `Dockerfile.distroname` and that they are the base images of that distro + the OpenSSH client. Try to avoid extra packages as much as you can.
+- Don't submit bugfixes for the `empty` image just yet. I want to work on that one on my own for now.<br>_Once I'll start accepting PR's for `empty` i will remove this message_
