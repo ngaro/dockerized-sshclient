@@ -17,13 +17,17 @@ docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ss
 ## Available Images
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
-| Distro | Version | Tag(s)
-| ------ | ------- | -------------- |
-| Alpine |  3.20.2 | `alpine`, `latest` |
-| Kali   |  2024.2 | `kali`         |
-| Ubuntu |  24.04  | `ubuntu`       |
+| Distro       | Version | Tag(s)
+| ------------ | ------- | -------------- |
+| Alpine       |  3.20.2 | `alpine`, `latest` |
+| Kali         |  2024.2 | `kali`         |
+| Ubuntu       |  24.04  | `ubuntu`       |
+| OpenSSH-only |     9.8 | `empty`, `dev` |
 
-Note that Alpine also has the tag `latest`. This means that if you use `garo/openssh-client` without tag you'll get Alpine
+Extra info:
+- The `empty` image will become a extremely minimal image with a empty `/root/.ssh` directory and the OpenSSH client at `/ssh`. __No__ other files or directories will be present.<br>
+_Note that this image is still in __heavy__ development and will certainly __not__ work yet._
+- The Alpine also has the tag `latest`. This means that if you use `garo/openssh-client` without tag you'll get Alpine
 
 ## Contributing
 - If you see a problem that you can fix, please submit a pull request to the relevant branch.<br>_(There is a separate branch for every distro)_
