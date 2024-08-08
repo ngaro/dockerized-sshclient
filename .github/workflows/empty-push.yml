@@ -11,7 +11,7 @@ on:
 
 jobs:
   docker:
-    runs-on: empty-latest
+    runs-on: ubuntu-latest
     steps:
       -
         name: Set up QEMU
@@ -30,7 +30,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           file: Dockerfile.empty
-          context: "{{defaultContext}}:empty"
           platforms: linux/amd64,linux/arm64
           push: true
           tags: garo/openssh-client:empty

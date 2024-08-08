@@ -1,9 +1,25 @@
 FROM alpine AS builder
+
+ARG OPENSSH_VERSION=9.8p1
+ARG OPENSSH_TGZ=openssh-${OPENSSH_VERSION}.tar.gz
+ARG OPENSSH_URL=https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/${OPENSSH_TGZ}
+
 WORKDIR /root
 RUN apk add --no-cache gcc musl-dev
-COPY ssh.c /root
-RUN gcc -static -o ssh ssh.c
+RUN wget ${OPENSSH_URL} && tar -xzf ${OPENSSH_TGZ} && rm ${OPENSSH_TGZ}
+WORKDIR /root/openssh-${OPENSSH_VERSION}
+RUN apk add --no-cache zlib-dev openssl-dev
+RUN apk add --no-cache make
+RUN ./configure --enable-static-link
+RUN make
+RUN make install
+WORKDIR /root
+RUN rm -rf /root/openssh-${OPENSSH_VERSION}
+#COPY ssh.c /root
+##RUN gcc -static -o ssh ssh.c
+#RUN gcc -o ssh ssh.c
 
 FROM scratch
-COPY --from=builder /root/ssh /ssh
+#COPY --from=builder /root/ssh /ssh
+COPY --from=builder /usr/local/bin/ssh /ssh
 CMD ["/ssh"]
