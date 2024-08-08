@@ -21,6 +21,7 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | ------------ | ------- | -------------- |
 | Alpine       |  3.20.2 | `alpine`, `latest` |
 | Kali         |  2024.2 | `kali`         |
+| Ubuntu       |  24.04  | `ubuntu`       |
 
 Extra info:
 - The Alpine also has the tag `latest`. This means that if you use `garo/openssh-client` without tag you'll get Alpine
