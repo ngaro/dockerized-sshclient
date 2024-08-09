@@ -3,7 +3,7 @@ name: Build and Push Fedora Image
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - Dockerfile.fedora
       - .github/workflows/fedora-push.yml
