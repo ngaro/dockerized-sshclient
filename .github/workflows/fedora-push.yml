@@ -1,12 +1,12 @@
 name: Build and Push Fedora Image
 
 on:
-  #push:
-  #  branches:
-  #    - dev
-  #  paths:
-  #    - Dockerfile.fedora
-  #    - .github/workflows/fedora-push.yml
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile.fedora
+      - .github/workflows/fedora-push.yml
   workflow_dispatch:
 
 jobs:

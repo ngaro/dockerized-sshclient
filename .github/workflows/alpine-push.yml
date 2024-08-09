@@ -1,12 +1,12 @@
 name: Build and Push Alpine Image
 
 on:
-  #push:
-  #  branches:
-  #    - dev
-  #  paths:
-  #    - Dockerfile.alpine
-  #    - .github/workflows/alpine-push.yml
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile.alpine
+      - .github/workflows/alpine-push.yml
   workflow_dispatch:
 
 jobs:

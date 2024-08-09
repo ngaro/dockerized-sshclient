@@ -1,12 +1,12 @@
 name: Build and Push Ubuntu Image
 
 on:
-  #push:
-  #  branches:
-  #    - dev
-  #  paths:
-  #    - Dockerfile.ubuntu
-  #    - .github/workflows/ubuntu-push.yml
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile.ubuntu
+      - .github/workflows/ubuntu-push.yml
   workflow_dispatch:
 
 jobs:
