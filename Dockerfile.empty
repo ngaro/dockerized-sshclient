@@ -1,7 +1,7 @@
 FROM alpine AS builder
 WORKDIR /root
 RUN apk add --no-cache curl gcc make perl linux-headers musl-dev autoconf automake
-COPY empty/build-static-ssh.sh .
+COPY ./build-static-ssh.sh .
 RUN ./build-static-ssh.sh
 RUN echo "root:x:0:0:root:/:/ssh" > /root/passwd
 
