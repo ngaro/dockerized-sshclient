@@ -6,6 +6,7 @@ on:
       - dev
     paths:
       - Dockerfile.empty
+      - build-static-ssh.sh
       - .github/workflows/empty-push.yml
   workflow_dispatch:
 
