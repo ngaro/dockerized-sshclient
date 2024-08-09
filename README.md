@@ -41,4 +41,3 @@ Extra info:
 ## Contributing
 - Bugfixes and Dockerfile's for new distributions are always welcome. Submit all pull requests to the `dev` branch.
 - If you create a Dockerfile ensure that the file name is `Dockerfile.distroname` and that they are the base images of that distro + the OpenSSH client. Try to avoid extra packages as much as you can.
-- Don't submit bugfixes for the `empty` image just yet. I want to work on that one on my own for now.<br>_Once I'll start accepting PR's for `empty` i will remove this message_
