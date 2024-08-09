@@ -35,7 +35,7 @@ read -p "We will be working in $top, things might get messy (t)here. Press Ctrl+
 set -uex    # Show each command before executing it and exits when a command returns a non-zero exit code or a variable is used without being set
 umask 0077  # Make sure that no one except the owner can read, write, or execute newly created files
 
-export "CPPFLAGS=-I$root/include -L. -fPIC -pthread"; export "CFLAGS=$CPPFLAGS" # Compiler will look for headers in $root/include, libraries in the current directory and generate position-independent code
+export "CPPFLAGS=-I$root/include -L. -fPIC -pthread"; export "CFLAGS=$CPPFLAGS" # Compiler will look for headers in $root/include, libraries in the current directory and generate position-independent code and use pthreads
 export "LDFLAGS=-L$root/lib -L$root/lib64 -static" # Linker will look for libraries in $root/lib and $root/lib64 and link statically
 
 #Check if everything needed is available
