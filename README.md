@@ -8,10 +8,18 @@ These images are designed for one specific use case: accessing systems with SSH 
 Using the SSH client on my host system would require modifying my `~/.ssh/known_hosts`, which I prefer to avoid. Instead, these images create a temporary `known_hosts` file each time.
 
 ## Usage
-You can use the images with the following command:
-
+Some examples:
 ```bash
-docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh [--your --favorite --options] user@server
+# A simple connection to "server" as "user":
+docker run -it --rm garo/openssh-client ssh user@server
+# But this time you want to be able to login with your keys instead of password:
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh user@server
+# And now you also want some compression on the connection
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh -C user@server
+# And now you suddenly hate Alpine and want to use the Ubuntu-based image
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:ubuntu ssh -C user@server
+# And now you want to go lightweight and want a image only containing ssh. Note the slash in front of ssh here !
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:empty /ssh -C user@server
 ```
 
 ## Available Images
