@@ -32,7 +32,6 @@ alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/
 ## Available Images
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
-DEBUG empty was 1.93MB and 2.27MB op dockerhub
 | Distro       | Distro Version | OpenSSH Version | Tag(s)
 | ------------ | -------------- | --------------- | ----------------- |
 | _None_       |        __/__   |          9.6p1  | `empty`           |
