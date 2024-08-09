@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 ZLIB_VERSION=1.3.1
 OPENSSL_VERSION=3.2.0
@@ -25,18 +25,28 @@ OPENSSL_BUILD_COMMANDS="./config --prefix=\"$root\" no-shared no-tests && make &
 OPENSSH_DIR="openssh-portable-${OPENSSH_VERSION}"
 OPENSSH_TGZ="$OPENSSH_DIR.tar.gz"
 OPENSSH_URL="https://github.com/openssh/openssh-portable/archive/refs/tags/${OPENSSH_VERSION}.tar.gz"
-OPENSSH_CHECKFILE="ssh"
-OPENSSH_BUILD_COMMANDS="true"
+OPENSSH_CHECKFILE="bin/ssh"
+OPENSSH_BUILD_COMMANDS="autoreconf && LIBS=\"-lpthread\" ./configure --prefix=\"$root\" --exec-prefix=\"$root\" --with-privsep-user=nobody --with-ssl-dir=\"$root\" && make && make install"
 
-export "CPPFLAGS=-I$root/include -L. -fPIC"; export "CFLAGS=$CPPFLAGS" # Compiler will look for headers in $root/include, libraries in the current directory, and generate position-independent code
-export "LDFLAGS=-L$root/lib -L$root/lib64" # Compiler will look for libraries in $root/lib and $root/lib64
+echo "We will be working in $top, things might get messy here. Press Ctrl+C to cancel now or Enter to continue"; read -r
+
+export "CPPFLAGS=-I$root/include -L. -fPIC"; export "CFLAGS=$CPPFLAGS" # Compiler will look for headers in $root/include, libraries in the current directory, generate position-independent code and link statically
+export "LDFLAGS=-L$root/lib -L$root/lib64 -static" # Compiler will look for libraries in $root/lib and $root/lib64
 
 set -uex    # Show each command before executing it and exits when a command returns a non-zero exit code or a variable is used without being set
 umask 0077  # Make sure that no one except the owner can read, write, or execute newly created files
 
-#COMMENT THIS for debugging the script. Each stage will cache download and build
-#rm -rf "$root" "$build" "$dist"
-mkdir -p "$root" "$build" "$dist" # Create directories if they don't exis
+#Check if everything needed is available
+autoreconf --version || { echo "You still need to install autoconf"; exit 1; }
+aclocal --version || { echo "You still need to install automake"; exit 1; }
+curl --version || { echo "You still need to install curl"; exit 1; }
+perl -v || { echo "You still need to install perl"; exit 1; } # OpenSSL's ./configure needs perl
+make --version || { echo "You still need to install make"; exit 1; }
+gcc --version || { echo "You still need to install gcc"; exit 1; }
+[ -f /usr/include/linux/mman.h ] || { echo "You don't have the Linux kernel headers installed"; exit 1; }
+echo "#include <stdio.h>" | gcc -E - -o /dev/null || { echo "You still need to install the C library development files"; exit 1; }
+
+mkdir -p "$root" "$build" "$dist" # Create directories if they don't exist
 
 build() {
     local name="$1"; local version="$2"; local dir="$3"; local tgz="$4"; local url="$5"; local checkfile="$6"; local buildcommands="$7"
@@ -59,18 +69,4 @@ build "ZLIB" "$ZLIB_VERSION" "$ZLIB_DIR" "$ZLIB_TGZ" "$ZLIB_URL" "$ZLIB_CHECKFIL
 build "OpenSSL" "$OPENSSL_VERSION" "$OPENSSL_DIR" "$OPENSSL_TGZ" "$OPENSSL_URL" "$OPENSSL_CHECKFILE" "$OPENSSL_BUILD_COMMANDS"
 build "OpenSSH" "$OPENSSH_VERSION" "$OPENSSH_DIR" "$OPENSSH_TGZ" "$OPENSSH_URL" "$OPENSSH_CHECKFILE" "$OPENSSH_BUILD_COMMANDS"
 
-cd "$build"/$OPENSSH_DIR
-for libdir in lib ; do cp -p $root/$libdir/*.a . ; done # Copy all the static libraries to the openssh source directory so that we can link statically with them
-#for libdir in lib lib64; do cp -p $root/$libdir/*.a . ; done # Copy all the static libraries to the openssh source directory so that we can link statically with them
-if [ ! -f sshd_config.orig ]; then cp -p sshd_config sshd_config.orig; fi # Backup the original configuration file if we didn't do it yet
-sed \
-   -e 's/^#\(PubkeyAuthentication\) .*/\1 yes/' \
-   -e '/^# *Kerberos/d' \
-   -e '/^# *GSSAPI/d' \
-   -e 's/^#\([A-Za-z]*Authentication\) .*/\1 no/' \
-   sshd_config.orig > sshd_config # Change some settings in the server configuration file
-export PATH=$root/bin:$PATH # Make sure that the binaries will be found when not using an absolute path
-autoreconf || { echo "autoreconf failed"; exit 1; } # Generate the configure script
-./configure LIBS="-lpthread" "--prefix=$root" "--exec-prefix=$root" --with-privsep-user=nobody --with-privsep-path="$prefix/var/empty" "--with-ssl-dir=$root" || { echo "configure failed"; exit 1; } # Configure the source code
-make || { echo "make failed"; exit 1; } # Compile the source code
-cd "$top"
+echo "Everything done. You can find the statically linked OpenSSH binaries in $root/bin"
