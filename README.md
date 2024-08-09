@@ -12,14 +12,21 @@ Some examples:
 ```bash
 # A simple connection to "server" as "user":
 docker run -it --rm garo/openssh-client ssh user@server
+
 # But this time you want to be able to login with your keys instead of password:
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh user@server
+
 # And now you also want some compression on the connection
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh -C user@server
+
 # And now you suddenly hate Alpine and want to use the Ubuntu-based image
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:ubuntu ssh -C user@server
+
 # And now you want to go lightweight and want a image only containing ssh. Note the slash in front of ssh here !
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:empty /ssh -C user@server
+
+#For people that hate typing I strongly recommend this in your ~/.bashrc, ~/.zshrc, ...
+alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh"
 ```
 
 ## Available Images
@@ -32,10 +39,11 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | Ubuntu       |         24.04  |           9.6p1 |`ubuntu`           |
 | OpenSSH-only |        __/__   |         9.6p1   | `empty`, `dev`    |
 
-Extra info:
-- The Alpine also has the tag `latest`. This means that if you use `garo/openssh-client` without tag you'll get Alpine
-- The `empty` image is a extremely minimal image with the client at `/ssh` and a 1-line `/etc/passwd` that defines the root user.
-<br> __No__ other files or directories are be present. This implies thay you will have to launch it as `/ssh` instead of `ssh`
+## Extra
+- The `empty` image is a image containing only 2 files:
+  - `/ssh` _(the ssh client which has to be launched as `/ssh` instead of `ssh`)_
+  - `/etc/passwd` with only 1 line: `root:x:0:0:root:/:/ssh` _(ssh needs to know it's user)_
+<br>__No__ other files or directories are be present. This implies thay you will have to launch it as `/ssh` instead of `ssh`
 - For now consider all images _(certainly `empty`)_ as experimental.
 
 
