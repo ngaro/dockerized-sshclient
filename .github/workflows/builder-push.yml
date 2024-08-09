@@ -43,3 +43,11 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: garo/openssh-client:empty
+      -
+        name: Build and push busybox
+        uses: docker/build-push-action@v6
+        with:
+          file: Dockerfile.busybox
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: garo/openssh-client:busybox
