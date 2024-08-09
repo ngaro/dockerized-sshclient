@@ -1,12 +1,12 @@
-name: Build and Push empty Image
+name: Build and Push Busybox Image
 
 on:
   push:
     branches:
       - main
     paths:
-      - Dockerfile.empty
-      - .github/workflows/empty-push.yml
+      - Dockerfile.busybox
+      - .github/workflows/busybox-push.yml
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          file: Dockerfile.empty
+          file: Dockerfile.busybox
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: garo/openssh-client:empty
+          tags: garo/openssh-client:busybox

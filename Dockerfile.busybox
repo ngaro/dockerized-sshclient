@@ -1,0 +1,8 @@
+FROM garo/openssh-client:builder AS builder
+WORKDIR /root
+RUN echo "root:x:0:0:root:/:/ssh" > /root/passwd
+
+FROM busybox
+#COPY --from=builder /root/root/bin/ssh /ssh
+#COPY --from=builder /root/passwd /etc/passwd
+#CMD ["/ssh"]
