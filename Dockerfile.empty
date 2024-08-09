@@ -3,10 +3,9 @@ WORKDIR /root
 RUN apk add --no-cache curl gcc make perl linux-headers musl-dev autoconf automake
 COPY empty/build-static-ssh.sh .
 RUN ./build-static-ssh.sh
-#COPY empty/ssh.c /root
-##RUN gcc -static -o ssh ssh.c
-#RUN gcc -o ssh ssh.c
+RUN echo "root:x:0:0:root:/:/ssh" > /root/passwd
 
 FROM scratch
 COPY --from=builder /root/root/bin/ssh /ssh
+COPY --from=builder /root/passwd /etc/passwd
 CMD ["/ssh"]
