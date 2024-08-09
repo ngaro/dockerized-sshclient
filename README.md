@@ -36,6 +36,8 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | ------------ | -------------- | --------------- | ----------------- |
 | _None_ |        __/__   |         9.6p1   | `empty`           |
 | Alpine       |         3.20.2 |           9.7p1 |`alpine`, `latest` |
+| Debian       |            12  |           9.2p1 |`debian`           |
+| Fedora       |           40   |           9.6p1 |`fedora`           |
 | Kali         |         2024.2 |           9.7p1 |`kali`             |
 | Ubuntu       |         24.04  |           9.6p1 |`ubuntu`           |
 
