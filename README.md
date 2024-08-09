@@ -1,6 +1,6 @@
 # Docker Base Images with OpenSSH Client
 
-These are base images from different distros with an OpenSSH __CLIENT__ added.
+These are base images from different distros with an OpenSSH __CLIENT__ added.<br>Also included is a empty image with only the ssh client.
 
 ## Use Case
 These images are designed for one specific use case: accessing systems with SSH servers that frequently change their host keys (e.g., a system with a fixed IP that you often reinstall for testing). 
@@ -34,10 +34,10 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 
 | Distro       | Distro Version | OpenSSH Version | Tag(s)
 | ------------ | -------------- | --------------- | ----------------- |
+| _None_ |        __/__   |         9.6p1   | `empty`           |
 | Alpine       |         3.20.2 |           9.7p1 |`alpine`, `latest` |
 | Kali         |         2024.2 |           9.7p1 |`kali`             |
 | Ubuntu       |         24.04  |           9.6p1 |`ubuntu`           |
-| OpenSSH-only |        __/__   |         9.6p1   | `empty`, `dev`    |
 
 ## Extra
 - The `empty` image is a image containing only 2 files:
