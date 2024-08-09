@@ -3,7 +3,7 @@ name: Build and Push Debian Image
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - Dockerfile.debian
       - .github/workflows/debian-push.yml
