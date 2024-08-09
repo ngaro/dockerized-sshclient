@@ -41,9 +41,9 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 
 ## Extra
 - The `empty` image is a image containing only 2 files:
-  - `/ssh` _(the ssh client which has to be launched as `/ssh` instead of `ssh`)_
+  - `/ssh` _(The self-compiled OpenSSH client)_
   - `/etc/passwd` with only 1 line: `root:x:0:0:root:/:/ssh` _(ssh needs to know it's user)_
-<br>__No__ other files or directories are be present. This implies thay you will have to launch it as `/ssh` instead of `ssh`
+<br>__No__ other files or directories are be present.<br>This implies thay you will have to launch it as `/ssh` instead of `ssh`
 - For now consider all images _(certainly `empty`)_ as experimental.
 
 
