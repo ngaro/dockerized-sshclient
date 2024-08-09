@@ -36,6 +36,7 @@ Extra info:
 - The Alpine also has the tag `latest`. This means that if you use `garo/openssh-client` without tag you'll get Alpine
 - The `empty` image is a extremely minimal image with the client at `/ssh` and a 1-line `/etc/passwd` that defines the root user.
 <br> __No__ other files or directories are be present. This implies thay you will have to launch it as `/ssh` instead of `ssh`
+- For now consider all images _(certainly `empty`)_ as experimental.
 
 
 ## Contributing
