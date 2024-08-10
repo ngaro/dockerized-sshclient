@@ -37,6 +37,7 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | _None_  |        __/__   |          9.8p1 | `empty`            |
 | Busybox |         1.36.1 |          9.8p1 | `busybox`          |
 | Alpine  |         3.20.2 |          9.7p1 | `alpine`, `latest` |
+| Arch    |     2024.08.04 |          9.8p1 | `arch`             |
 | Debian  |             12 |          9.2p1 | `debian`           |
 | Fedora  |             40 |          9.6p1 | `fedora`           |
 | Mageia  |              9 |          9.3p1 | `mageia`           |
