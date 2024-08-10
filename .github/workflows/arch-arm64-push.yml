@@ -1,12 +1,12 @@
-name: Build and Push Arch Image
+name: Build and Push Arch arm64 Image
 
 on:
   push:
     branches:
       - main
     paths:
-      - Dockerfile.arch
-      - .github/workflows/arch-push.yml
+      - Dockerfile.arch-arm64
+      - .github/workflows/arch-arm64-push.yml
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          file: Dockerfile.arch
-          platforms: linux/amd64
+          file: Dockerfile.arch-arm64
+          platforms: linux/arm64
           push: true
-          tags: garo/openssh-client:arch
+          tags: garo/openssh-client:arch-arm64
