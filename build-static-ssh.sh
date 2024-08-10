@@ -4,7 +4,6 @@ ZLIB_VERSION=1.3.1
 OPENSSL_VERSION=3.2.0
 OPENSSH_VERSION=V_9_8_P1
 
-prefix="/opt/openssh" # Installation directory of OpenSSH
 top="$(pwd)"          # Directory where we will download and compile everything (current directory)
 root="$top/root"      # Subdirectory where we will install everything.
 build="$top/build"    # Subdirectory where we will compile everything.
