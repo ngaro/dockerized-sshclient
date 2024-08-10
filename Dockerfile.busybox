@@ -5,4 +5,3 @@ RUN echo "root:x:0:0:root:/:/ssh" > /root/passwd
 FROM busybox
 COPY --from=builder /root/root/bin/ssh /usr/bin/ssh
 COPY --from=builder /root/passwd /etc/passwd
-CMD ["/ssh"]
