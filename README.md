@@ -43,11 +43,13 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | Ubuntu       |         24.04  |           9.6p1 |`ubuntu`           |
 
 ## Extra
-- The `empty` image is a image containing only 2 files:
+- `empty` contains only 2 files:
   - `/ssh` _(The self-compiled OpenSSH client)_
   - `/etc/passwd` with only 1 line: `root:x:0:0:root:/:/ssh` _(ssh needs to know it's user)_
-  - __No__ other files or directories are be present.<br>This implies thay you will have to __launch ssh as `/ssh` instead of `ssh` in `empty`__
-- For now consider all images _(certainly `empty`)_ as experimental.
+  - __No__ other files or directories are present.<br>This implies thay you will have to __launch ssh as `/ssh` instead of `ssh` in `empty`__
+- `busybox` contains the same self-compiled OpenSSH client.
+- There is also a `builder` that was used to compile OpenSSH for `empty` and `busybox`. It cannot be used directly and should be ignored
+- For now consider all images _(certainly `empty` and `busybox`)_ as experimental. Report all issues.
 
 
 ## Contributing
