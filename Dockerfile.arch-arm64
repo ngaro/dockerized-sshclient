@@ -1,0 +1,3 @@
+FROM menci/archlinuxarm
+RUN pacman -Syu --noconfirm openssh && pacman -Scc --noconfirm && rm -rf /var/cache/pacman/pkg/*
+WORKDIR /root
