@@ -32,15 +32,16 @@ alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/
 ## Available Images
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
-| Distro       | Distro Version | OpenSSH Version | Tag(s)
-| ------------ | -------------- | --------------- | ----------------- |
-| _None_       |        __/__   |          9.8p1  | `empty`           |
-| Busybox      |         1.36.1 |          9.8p1  | `busybox`         |
-| Alpine       |         3.20.2 |           9.7p1 |`alpine`, `latest` |
-| Debian       |            12  |           9.2p1 |`debian`           |
-| Fedora       |           40   |           9.6p1 |`fedora`           |
-| Kali         |         2024.2 |           9.7p1 |`kali`             |
-| Ubuntu       |         24.04  |           9.6p1 |`ubuntu`           |
+| Distro  | Distro Version | OpenSSH Version | Tag(s)
+| ------- | -------------- | -------------- | ------------------ |
+| _None_  |        __/__   |          9.8p1 | `empty`            |
+| Busybox |         1.36.1 |          9.8p1 | `busybox`          |
+| Alpine  |         3.20.2 |          9.7p1 | `alpine`, `latest` |
+| Debian  |             12 |          9.2p1 | `debian`           |
+| Fedora  |             40 |          9.6p1 | `fedora`           |
+| Mageia  |              9 |          9.3p1 | `mageia`           |
+| Kali    |         2024.2 |          9.7p1 | `kali`             |
+| Ubuntu  |          24.04 |          9.6p1 | `ubuntu`           |
 
 ## Extra
 - `empty` contains only 2 files:
