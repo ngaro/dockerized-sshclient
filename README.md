@@ -33,23 +33,24 @@ alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
 | Distro  | Distro Version | OpenSSH Version | Tag(s)
-| ------- | -------------- | -------------- | ------------------ |
-| _None_  |        __/__   |          9.8p1 | `empty`            |
-| Busybox |         1.36.1 |          9.8p1 | `busybox`          |
-| Alpine  |         3.20.2 |          9.7p1 | `alpine`, `latest` |
-| Arch    |     2024.08.04 |          9.8p1 | `arch`             |
-| Debian  |             12 |          9.2p1 | `debian`           |
-| Fedora  |             40 |          9.6p1 | `fedora`           |
-| Mageia  |              9 |          9.3p1 | `mageia`           |
-| Kali    |         2024.2 |          9.7p1 | `kali`             |
-| Ubuntu  |          24.04 |          9.6p1 | `ubuntu`           |
+| ------- | -------------- | -------------- | -------------------- |
+| _None_  |        __/__   |          9.8p1 | `empty`              |
+| Busybox |         1.36.1 |          9.8p1 | `busybox`            |
+| Alpine  |         3.20.2 |          9.7p1 | `alpine`, `latest`   |
+| Arch    |     2024.08.04 |          9.8p1 | `arch`, `arch-arm64` |
+| Debian  |             12 |          9.2p1 | `debian`             |
+| Fedora  |             40 |          9.6p1 | `fedora`             |
+| Mageia  |              9 |          9.3p1 | `mageia`             |
+| Kali    |         2024.2 |          9.7p1 | `kali`               |
+| Ubuntu  |          24.04 |          9.6p1 | `ubuntu`             |
 
-## Extra
+## Notes
 - `empty` contains only 2 files:
   - `/ssh` _(The self-compiled OpenSSH client)_
   - `/etc/passwd` with only 1 line: `root:x:0:0:root:/:/ssh` _(ssh needs to know it's user)_
   - __No__ other files or directories are present.<br>This implies thay you will have to __launch ssh as `/ssh` instead of `ssh` in `empty`__
 - `busybox` contains the same self-compiled OpenSSH client.
+- Arch Linux has no official base image for arm64. `arch-arm64` is based on an unofficial image and has a different tag to make it clear.
 - There is also a `builder` that was used to compile OpenSSH for `empty` and `busybox`. It cannot be used directly and should be ignored
 - For now consider all images _(certainly `empty` and `busybox`)_ as experimental. Report all issues.
 
