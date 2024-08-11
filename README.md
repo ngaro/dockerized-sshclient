@@ -25,12 +25,17 @@ docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:ub
 # Going lightweight and using a image only containing ssh. Note the slash in front of ssh here !
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:empty /ssh -C user@server
 
-# Copying a `/home/user/somefile` to the server at `/some/location/`:
-docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client scp /home/user/somefile user@server:/some/location/
+# Copying a `/home/user/somefile` to the server at `/some/location/`.
+# Note that the file should be at a location that is also mounted in the container
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro -v /home:/home:ro garo/openssh-client scp /home/user/somefile user@server:/some/location/
+
+# Copying a file in the other direction. Note that this time read-only mounting is not enough
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro -v /home:/home garo/openssh-client scp user@server:/some/location/somefile /home/user/
 
 #For people that hate typing I strongly recommend this in your ~/.bashrc, ~/.zshrc, ...
 alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh"
-alias scpdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client scp"
+alias scpdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro -v /home:/home garo/openssh-client scp"
+#For the "scpdocker" you might want to add more "-v /some/path:/some/path:ro" options
 ```
 
 ## Available Images
