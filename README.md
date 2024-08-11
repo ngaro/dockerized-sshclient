@@ -19,14 +19,18 @@ docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ss
 # And now you also want some compression on the connection
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh -C user@server
 
-# And now you suddenly hate Alpine and want to use the Ubuntu-based image
+# Using the Ubuntu based image
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:ubuntu ssh -C user@server
 
-# And now you want to go lightweight and want a image only containing ssh. Note the slash in front of ssh here !
+# Going lightweight and using a image only containing ssh. Note the slash in front of ssh here !
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:empty /ssh -C user@server
+
+# Copying a `/home/user/somefile` to the server at `/some/location/`:
+docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client scp /home/user/somefile user@server:/some/location/
 
 #For people that hate typing I strongly recommend this in your ~/.bashrc, ~/.zshrc, ...
 alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh"
+alias scpdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client scp"
 ```
 
 ## Available Images
