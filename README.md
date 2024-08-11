@@ -32,17 +32,17 @@ alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/
 ## Available Images
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
-| Distro  | Distro Version | OpenSSH Version | Includes `scp` | Tag(s)
-| ------- | -------------- | -------------- | --------------- | -------------------- |
-| _None_  |        __/__   |          9.8p1 | No              | `empty`              |
-| Busybox |         1.36.1 |          9.8p1 | No              | `busybox`            |
-| Alpine  |         3.20.2 |          9.7p1 | Yes             | `alpine`, `latest`   |
-| Arch    |     2024.08.04 |          9.8p1 | Yes             | `arch`, `arch-arm64` |
-| Debian  |             12 |          9.2p1 | Yes             | `debian`             |
-| Fedora  |             40 |          9.6p1 | Yes             | `fedora`             |
-| Mageia  |              9 |          9.3p1 | Yes             | `mageia`             |
-| Kali    |         2024.2 |          9.7p1 | Yes             | `kali`               |
-| Ubuntu  |          24.04 |          9.6p1 | Yes             | `ubuntu`             |
+| Distro  | Distro Version | OpenSSH Version | All __client__ programs | Tag(s)
+| ------- | -------------- | --------------- | ------------------- | -------------------- |
+| _None_  |        __/__   |           9.8p1 | No                  | `empty`              |
+| Busybox |         1.36.1 |           9.8p1 | No                  | `busybox`            |
+| Alpine  |         3.20.2 |           9.7p1 | Yes                 | `alpine`, `latest`   |
+| Arch    |     2024.08.04 |           9.8p1 | Yes                 | `arch`, `arch-arm64` |
+| Debian  |             12 |           9.2p1 | Yes                 | `debian`             |
+| Fedora  |             40 |           9.6p1 | Yes                 | `fedora`             |
+| Mageia  |              9 |           9.3p1 | Yes                 | `mageia`             |
+| Kali    |         2024.2 |           9.7p1 | Yes                 | `kali`               |
+| Ubuntu  |          24.04 |           9.6p1 | Yes                 | `ubuntu`             |
 
 ## Notes
 - `empty` contains only 2 files:
