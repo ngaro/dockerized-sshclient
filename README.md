@@ -32,7 +32,7 @@ alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/
 ## Available Images
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
-| Distro  | Distro Version | OpenSSH Version | All __client__ programs | Tag(s)
+| Distro  | Distro Version | OpenSSH Version | All client programs | Tag(s)
 | ------- | -------------- | --------------- | ------------------- | -------------------- |
 | _None_  |        __/__   |           9.8p1 | No                  | `empty`              |
 | Busybox |         1.36.1 |           9.8p1 | No                  | `busybox`            |
