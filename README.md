@@ -19,42 +19,32 @@ docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ss
 # And now you also want some compression on the connection
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh -C user@server
 
-# Using the Ubuntu based image
+# And now you suddenly hate Alpine and want to use the Ubuntu-based image
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:ubuntu ssh -C user@server
 
-# Going lightweight and using a image only containing ssh. Note the slash in front of ssh here !
+# And now you want to go lightweight and want a image only containing ssh. Note the slash in front of ssh here !
 docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client:empty /ssh -C user@server
-
-# Copying a `/home/user/somefile` to the server at `/some/location/`.
-# Note that the file should be at a location that is also mounted in the container
-docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro -v /home:/home:ro garo/openssh-client scp /home/user/somefile user@server:/some/location/
-
-# Copying a file in the other direction. Note that this time read-only mounting is not enough
-docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro -v /home:/home garo/openssh-client scp user@server:/some/location/somefile /home/user/
 
 #For people that hate typing I strongly recommend this in your ~/.bashrc, ~/.zshrc, ...
 alias sshdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro garo/openssh-client ssh"
-alias scpdocker="docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro -v /home:/home garo/openssh-client scp"
-#For the "scpdocker" you might want to add more "-v /some/path:/some/path:ro" options
 ```
 
 ## Available Images
 The images are named `garo/openssh-client:tag-of-the-distro` and are available for the amd64 and arm64 architectures.
 
-| Distro  | Distro Version | OpenSSH Version | Client programs | Tag(s)
-| ------- | -------------- | --------------- | --------------------------------------------------- | -------------------- |
-| _None_  |        __/__   |           9.8p1 | Only `ssh`                                          | `empty`              |
-| Busybox |         1.36.1 |           9.8p1 | Only `ssh`                                          | `busybox`            |
-| Alpine  |         3.20.2 |           9.7p1 | All but: `ssh-argv0`,`slogin`                       | `alpine`, `latest`   |
-| Arch    |     2024.08.04 |           9.8p1 | All but: `ssh-argv0`, `slogin`                      | `arch`, `arch-arm64` |
-| Debian  |             12 |           9.2p1 | All but: `ssh-pkcs11-helper`                        | `debian`             |
-| Fedora  |             40 |           9.6p1 | All but: `ssh-argv0`, `slogin`, `ssh-pkcs11-helper` | `fedora`             |
-| Mageia  |              9 |           9.3p1 | All but: `ssh-argv0`, `slogin`, `ssh-pkcs11-helper` | `mageia`             |
-| Kali    |         2024.2 |           9.7p1 | All but: `ssh-pkcs11-helper`                        | `kali`               |
-| Ubuntu  |          24.04 |           9.6p1 | All but: `ssh-pkcs11-helper`                        | `ubuntu`             |
+| Distro  | Distro Version | OpenSSH Version | Tag(s)
+| ------- | -------------- | -------------- | -------------------- |
+| _None_  |        __/__   |          9.8p1 | `empty`              |
+| Busybox |         1.36.1 |          9.8p1 | `busybox`            |
+| Alpine  |         3.20.2 |          9.7p1 | `alpine`, `latest`   |
+| Arch    |     2024.08.04 |          9.8p1 | `arch`, `arch-arm64` |
+| Debian  |             12 |          9.2p1 | `debian`             |
+| Fedora  |             40 |          9.6p1 | `fedora`             |
+| Mageia  |              9 |          9.3p1 | `mageia`             |
+| Kali    |         2024.2 |          9.7p1 | `kali`               |
+| Ubuntu  |          24.04 |          9.6p1 | `ubuntu`             |
 
 ## Notes
-- _"All clients programs"_ is `scp`, `sftp`, `slogin`, `ssh`, `ssh-add`, `ssh-agent`, `ssh-argv0`, `ssh-copy-id`, `ssh-keygen`, `ssh-keyscan`, `ssh-pkcs11-helper`
 - `empty` contains only 2 files:
   - `/ssh` _(The self-compiled OpenSSH client)_
   - `/etc/passwd` with only 1 line: `root:x:0:0:root:/:/ssh` _(ssh needs to know it's user)_
