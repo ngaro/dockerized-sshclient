@@ -54,6 +54,7 @@ The images are named `garo/openssh-client:tag-of-the-distro` and are available f
 | Ubuntu  |          24.04 |           9.6p1 | Yes                 | `ubuntu`             |
 
 ## Notes
+- _"All clients programs"_ is `scp`, `sftp`, `ssh`, `ssh-add`, `ssh-agent`, `ssh-argv0`, `ssh-copy-id`, `ssh-keygen`, `ssh-keyscan`, `slogin`
 - `empty` contains only 2 files:
   - `/ssh` _(The self-compiled OpenSSH client)_
   - `/etc/passwd` with only 1 line: `root:x:0:0:root:/:/ssh` _(ssh needs to know it's user)_
